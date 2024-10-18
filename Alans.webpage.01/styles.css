@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css?family=Proxima+Nova&display=swap');
+
+body {
+    font-family: 'Proxima Nova', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #0A192F, #1B263B); /* Updated background colors */
+    color: #ffffff; /* Updated text color */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    transition: background 0.5s ease-in-out, color 0.5s ease-in-out; /* Smooth background and text color transition */
+    text-align: center; /* Center text alignment */
+}
+
+header {
+    display: flex;
+    justify-content: center; /* Center header content */
+    align-items: center;
+    padding: 20px;
+    background-color: #07101d; /* Updated header color */
+    transition: background-color 0.3s ease-in-out; /* Smooth header transition */
+}
+
+header img {
+    width: 55px;
+    height: 55px;
+    margin: auto;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out; /* Smooth image transition */
+}
+
+header img:hover {
+    transform: scale(1.1); /* Slight zoom effect on hover */
+}
+
+#home img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px; /* Rounded corners */
+    position: absolute;
+    top: 250px;
+    left: 30px;
+    transition: transform 0.3s ease-in-out; /* Smooth transition for image */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center; /* Center text alignment */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 50px;
+    border: 2px solid #030d11; /* Updated outline border color */
+    border-radius: 20px; /* Rounded corners for button */
+    transition: border-color 0.3s ease-in-out; /* Smooth border transition */
+}
+
+nav ul li:hover {
+    border-color: #FFF; /* Change border color on hover */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #00A8E8; /* Updated text color */
+    padding: 10px;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+nav ul li a:hover {
+    color: #FFF; /* Change text color on hover */
+}
+
+section#home {
+    padding-top: 10cqb;
+    padding-left: 50;
+    margin: auto;
+    text-align: left;
+    transition: all 0.5s ease-in-out; /* Smooth transition for section */
+}
+
+section#home p {
+    transition: all 0.5s ease-in-out; /* Smooth transition for paragraphs */
+}
+
+section#contact ul {
+    list-style: none;
+    padding: 0;
+    text-align: center; /* Center text alignment */
+}
+
+section#contact ul li {
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+section#contact ul li a {
+    color: #FFF; /* Updated text color */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+section#contact ul li a:hover {
+    color: #00A8E8; /* Change color on hover */
+}
+
+a.download-cv {
+    display: inline-block;
+    text-decoration: none;
+    color: #00A8E8; /* Updated text color */
+    padding: 10px 20px;
+    border: 2px solid #0d0e0e; /* Border box for button look */
+    border-radius: 10px; /* Rounded corners for button */
+    background-color: #0A192F; /* Updated background color for button */
+    margin-top: 20px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth background-color and text color transition */
+}
+
+a.download-cv:hover {
+    background-color: #1B263B; /* Change background color on hover */
+    color: #FFF; /* Change text color on hover */
+}
+
+footer {
+    text-align: center;
+    padding: 10px 20px;
+    background-color: #07101d; /* Updated header color */
+    color: #FFF; /* Updated text color */
+    margin-top: auto;
+    transition: background-color 0.3s ease-in-out; /* Smooth footer transition */
+}
+
+footer:hover {
+    background-color: #1B263B; /* Change footer color on hover */
+}
+
+footer nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+}
+
+footer nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+footer nav ul li a {
+    text-decoration: none;
+    color: #FFF; /* Updated text color */
+    padding: 10px 20px;
+    border: 2px solid #FFF; /* Border box for button look */
+    border-radius: 20px; /* Rounded corners for button */
+    background-color: #0A192F; /* Updated background color for button */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Smooth background-color and text color transition */
+}
+
+footer nav ul li a:hover {
+    background-color: #1B263B; /* Change background color on hover */
+    color: #00A8E8; /* Change text color on hover */
+}
