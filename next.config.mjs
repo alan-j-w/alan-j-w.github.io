@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "/portfolio";
+
 const nextConfig = {
   output: "export",
   trailingSlash: true,
@@ -8,8 +10,8 @@ const nextConfig = {
     unoptimized: true,
   },
 
-  basePath: "/portfolio",
-  assetPrefix: "/portfolio",
+  basePath,
+  assetPrefix: basePath,
 };
 
 export default nextConfig;

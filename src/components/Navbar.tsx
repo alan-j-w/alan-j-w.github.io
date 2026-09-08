@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { getAssetPath } from "@/lib/assets";
 
 const navLinks = [
   { name: "About", href: "/#about" },
@@ -45,7 +46,7 @@ export default function Navbar() {
           >
             <div className="w-9 h-9 sm:w-10 sm:h-10 relative rounded-full overflow-hidden border-2 border-ink-200 group-hover:border-ink-400 transition-colors duration-200 shadow-sm">
               <Image
-                src="/images/logo.jpg"
+                src={getAssetPath("/images/logo.jpg")}
                 alt="Alan Logo"
                 width={50}
                 height={50}

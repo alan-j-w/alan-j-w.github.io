@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Github, Eye, Maximize2, X } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { getAssetPath } from "@/lib/assets";
 
 const allProjects = [
     {
@@ -11,7 +12,7 @@ const allProjects = [
         title: "Nexcart",
         role: "Lead Engineer",
         date: "April 2026",
-        previewImage: "/images/nexcart-preview.png",
+        previewImage: getAssetPath("/images/nexcart-preview.png"),
         description:
             "Multi-vendor marketplace with separate vendor and admin systems, role-based access control, and a scalable Next.js + Express architecture. Built to handle independent vendor storefronts under a single platform.",
         outcome: "Shipped a full e-commerce product from schema to deployment.",
@@ -24,7 +25,7 @@ const allProjects = [
         title: "Trackpi Job Portal",
         role: "Full Stack Engineer",
         date: "2025",
-        previewImage: "/images/trackpi-preview.png",
+        previewImage: getAssetPath("/images/trackpi-preview.png"),
         description:
             "Recruitment workflow platform with applicant tracking, collaborative hiring pipelines, and CRM-style candidate management. Designed around how real hiring teams actually work.",
         outcome: "Reduced manual coordination overhead across the hiring pipeline.",
@@ -37,7 +38,7 @@ const allProjects = [
         title: "VulnBox",
         role: "Founder & Engineer",
         date: "October 2025",
-        previewImage: "/images/vulnbox-preview.png",
+        previewImage: getAssetPath("/images/vulnbox-preview.png"),
         description:
             "Cybersecurity training platform with interactive hacking labs, sandboxed environments, and AI-powered guidance. Simulates real-world vulnerabilities in a safe, structured learning environment.",
         outcome: "Deployed live. Used for practical security training and research.",
@@ -50,7 +51,7 @@ const allProjects = [
         title: "Cellulogram",
         role: "Full Stack Engineer",
         date: "2026",
-        previewImage: "/images/cellulogram-preview.png",
+        previewImage: getAssetPath("/images/cellulogram-preview.png"),
         description:
             "Premium casting workspace and audition pipeline for regional cinema. A native mobile application providing a responsive pipeline for casting calls, self-tapes, and instant swipe-shortlisting review — eliminating messy WhatsApp and Google Drive clutter.",
         outcome: "Built on Expo SDK 55 with React Native, NativeWind, Zustand, and React Query.",

@@ -41,6 +41,10 @@ export const metadata: Metadata = {
     description:
       "Full stack engineer specializing in MERN, Python, Next.js, and React Native. Open to opportunities.",
   },
+  icons: {
+    icon: "/portfolio/images/logo.jpg",
+    apple: "/portfolio/images/logo.jpg",
+  },
 };
 
 export default function RootLayout({

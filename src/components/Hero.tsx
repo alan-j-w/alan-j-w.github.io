@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { Github, Linkedin, ArrowRight, Download } from "lucide-react";
+import { getAssetPath } from "@/lib/assets";
 
 const TECH_STACK = [
   "Python",
@@ -124,7 +125,7 @@ export default function Hero() {
             >
               {/* Primary CTA */}
               <a
-                href="/resume.pdf"
+                href={getAssetPath("/resume.pdf")}
                 download
                 id="hero-download-resume"
                 className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 active:scale-[0.97]"
@@ -194,7 +195,7 @@ export default function Hero() {
             <div className="relative aspect-square w-[200px] sm:w-[260px] md:w-[320px] lg:w-[380px] rounded-full bg-gradient-to-br from-ink-100 to-ink-200 shadow-xl border-4 sm:border-6 md:border-8 border-white">
               <div className="absolute inset-0 rounded-full overflow-hidden">
                 <Image
-                  src="/images/profile.png"
+                  src={getAssetPath("/images/profile.png")}
                   alt="Alan Joy Wilson — Full Stack Developer"
                   fill
                   draggable={false}
