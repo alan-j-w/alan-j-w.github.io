@@ -31,10 +31,8 @@ jobs:
         run: npm ci
 
       - name: Build static export
-        # Set NEXT_PUBLIC_BASE_PATH if your repo is a project repo (e.g. /portfolio).
-        # Delete or leave blank if you use a custom domain or user site (alan-j-w.github.io).
         env:
-          NEXT_PUBLIC_BASE_PATH: ""
+          NEXT_PUBLIC_BASE_PATH: /portfolio
         run: npm run build
 
       - name: Upload artifact
