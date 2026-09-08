@@ -5,6 +5,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScrolling from "@/components/SmoothScrolling";
+import { getAssetPath } from "@/lib/assets";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,8 +43,8 @@ export const metadata: Metadata = {
       "Full stack engineer specializing in MERN, Python, Next.js, and React Native. Open to opportunities.",
   },
   icons: {
-    icon: "/portfolio/images/logo.jpg",
-    apple: "/portfolio/images/logo.jpg",
+    icon: getAssetPath("/images/logo.jpg"),
+    apple: getAssetPath("/images/logo.jpg"),
   },
 };
 
