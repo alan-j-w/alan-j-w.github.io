@@ -24,11 +24,11 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-[100vh] min-h-[100dvh] flex flex-col justify-center bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32 pb-20 sm:pb-24 md:pb-32 w-full">
+    <section className="relative flex flex-col justify-center bg-white overflow-hidden min-h-screen">
+      <div className="max-w-6xl mx-auto px-5 sm:px-6 md:px-8 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 w-full">
 
         {/* Two-column layout: Text left, Portrait right */}
-        <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1fr_1fr] gap-10 sm:gap-12 items-center">
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-[1fr_auto] gap-10 sm:gap-12 items-center">
 
           {/* Left: Content */}
           <div className="space-y-6 sm:space-y-8">
@@ -51,7 +51,7 @@ export default function Hero() {
                 Hello, I'm
               </p>
               <h1
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-ink-900 leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold text-ink-900 leading-tight lg:whitespace-nowrap"
                 style={{
                   opacity: mounted ? 1 : 0,
                   transform: mounted ? "translateY(0)" : "translateY(20px)",
@@ -115,7 +115,6 @@ export default function Hero() {
 
             {/* Actions row */}
             <div
-              className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2"
               style={{
                 opacity: mounted ? 1 : 0,
                 transform: mounted ? "translateY(0)" : "translateY(8px)",
@@ -123,59 +122,61 @@ export default function Hero() {
                 transitionDelay: "440ms",
               }}
             >
-              {/* Primary CTA */}
-              <a
-                href={getAssetPath("/resume.pdf")}
-                download
-                id="hero-download-resume"
-                className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 active:scale-[0.97]"
-                style={{ background: "var(--accent-blue)" }}
-              >
-                <Download size={14} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
-                Download Resume
-              </a>
-
-              {/* Secondary CTA */}
-              <Link
-                href="/#projects"
-                className="group inline-flex items-center gap-2 text-sm font-semibold text-ink-900"
-              >
-                View my work
-                <ArrowRight
-                  size={16}
-                  className="transition-transform duration-200 ease-spring group-hover:translate-x-1"
-                />
-              </Link>
-
-              <span className="w-px h-4 bg-ink-200 hidden sm:block" aria-hidden="true" />
-
-              {/* Social icons */}
-              <div className="flex items-center gap-4">
+              {/* CTAs + socials on one line */}
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-2">
+                {/* Primary CTA */}
                 <a
-                  href="https://github.com/alan-j-w"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  className="text-ink-400 hover:text-ink-900 transition-colors duration-150 p-1"
+                  href={getAssetPath("/resume.pdf")}
+                  download
+                  id="hero-download-resume"
+                  className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-white transition-all duration-200 active:scale-[0.97]"
+                  style={{ background: "var(--accent-blue)" }}
                 >
-                  <Github size={18} />
+                  <Download size={14} className="transition-transform duration-200 group-hover:-translate-y-0.5" />
+                  Download Resume
                 </a>
-                <a
-                  href="https://www.linkedin.com/in/alan-joy-wilson-921053218"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="text-ink-400 hover:text-ink-900 transition-colors duration-150 p-1"
+
+                {/* Secondary CTA */}
+                <Link
+                  href="/#projects"
+                  className="group inline-flex items-center gap-2 text-sm font-semibold text-ink-900"
                 >
-                  <Linkedin size={18} />
-                </a>
+                  View my work
+                  <ArrowRight
+                    size={16}
+                    className="transition-transform duration-200 ease-spring group-hover:translate-x-1"
+                  />
+                </Link>
+
+                <span className="w-px h-4 bg-ink-200 hidden sm:block" aria-hidden="true" />
+
+                {/* Social icons */}
+                <div className="flex items-center gap-4">
+                  <a
+                    href="https://github.com/alan-j-w"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    className="text-ink-400 hover:text-ink-900 transition-colors duration-150 p-1"
+                  >
+                    <Github size={18} />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/alan-joy-wilson-921053218"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
+                    className="text-ink-400 hover:text-ink-900 transition-colors duration-150 p-1"
+                  >
+                    <Linkedin size={18} />
+                  </a>
+                </div>
               </div>
 
-              <span className="w-px h-4 bg-ink-200 hidden sm:block" aria-hidden="true" />
-
+              {/* Email — always on its own row so it can never be pushed off-screen */}
               <a
                 href="mailto:alanjoywilson@gmail.com"
-                className="hidden sm:block text-sm font-mono text-ink-400 hover:text-ink-600 transition-colors duration-150"
+                className="mt-3 inline-block text-sm font-mono text-ink-400 hover:text-ink-600 transition-colors duration-150"
               >
                 alanjoywilson@gmail.com
               </a>
@@ -184,7 +185,7 @@ export default function Hero() {
 
           {/* Right: Portrait as primary visual */}
           <div
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-center items-center"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "translateY(0)" : "translateX(20px)",
@@ -192,7 +193,7 @@ export default function Hero() {
               transitionDelay: "200ms",
             }}
           >
-            <div className="relative aspect-square w-[200px] sm:w-[260px] md:w-[320px] lg:w-[380px] rounded-full bg-gradient-to-br from-ink-100 to-ink-200 shadow-xl border-4 sm:border-6 md:border-8 border-white">
+            <div className="relative aspect-square w-[200px] sm:w-[260px] md:w-[300px] lg:w-[340px] xl:w-[380px] rounded-full bg-gradient-to-br from-ink-100 to-ink-200 shadow-xl border-4 sm:border-[6px] md:border-8 border-white flex-shrink-0">
               <div className="absolute inset-0 rounded-full overflow-hidden">
                 <Image
                   src={getAssetPath("/images/profile.png")}
@@ -200,7 +201,7 @@ export default function Hero() {
                   fill
                   draggable={false}
                   className="object-cover object-top select-none pointer-events-none"
-                  sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, (max-width: 1024px) 320px, 380px"
+                  sizes="(max-width: 640px) 200px, (max-width: 768px) 260px, (max-width: 1024px) 300px, (max-width: 1280px) 340px, 380px"
                   priority
                 />
               </div>
@@ -208,7 +209,7 @@ export default function Hero() {
               <div className="absolute inset-0 z-10 bg-transparent rounded-full" />
               {/* Subtle expanding outline ring — desktop only */}
               <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] sm:w-[280px] md:w-[340px] lg:w-[400px] aspect-square rounded-full border pointer-events-none opacity-0 hover:opacity-100 hover:scale-[1.03] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hidden sm:block"
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] sm:w-[280px] md:w-[320px] lg:w-[360px] xl:w-[400px] aspect-square rounded-full border pointer-events-none opacity-0 hover:opacity-100 hover:scale-[1.03] transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] hidden sm:block"
                 style={{ borderColor: "rgba(27,58,107,0.15)" }}
                 aria-hidden="true"
               />
