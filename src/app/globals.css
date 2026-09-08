@@ -1,0 +1,271 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────
+   Design Tokens
+───────────────────────────────────────────── */
+:root {
+  --accent-red:   #c8102e;
+  --accent-blue:  #1b3a6b;
+  --text-primary: #141412;
+  --text-secondary: #52524b;
+  --text-tertiary: #8c8c85;
+  --border:       #e8e8e4;
+  --surface:      #f7f7f6;
+}
+
+/* ─────────────────────────────────────────────
+   Base Reset & Performance
+───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Prevent iOS tap highlight */
+  -webkit-tap-highlight-color: transparent;
+  /* Prevent font size adjustment on orientation change */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  background-color: #ffffff;
+  color: var(--text-primary);
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+  /* Prevent pull-to-refresh on mobile */
+  overscroll-behavior-y: none;
+}
+
+/* Ensure no horizontal overflow on any ancestor */
+#__next, main {
+  overflow-x: hidden;
+}
+
+/* Hidden Spider-Man easter egg: text selection in faint crimson */
+::selection {
+  background-color: rgba(200, 16, 46, 0.08);
+  color: var(--text-primary);
+}
+
+/* Focus visible: cobalt outline, clean */
+:focus-visible {
+  outline: 1.5px solid var(--accent-blue);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Ensure images and media never overflow */
+img, video, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ─────────────────────────────────────────────
+   Typography Scale
+───────────────────────────────────────────── */
+@layer components {
+
+  /* Display — Hero headline */
+  .text-display {
+    @apply text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tightest leading-none;
+  }
+
+  /* Section heading */
+  .text-heading {
+    @apply text-2xl sm:text-3xl md:text-4xl font-bold tracking-tighter leading-tight text-ink-900;
+  }
+
+  /* Sub-heading */
+  .text-subheading {
+    @apply text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-ink-800;
+  }
+
+  /* Body */
+  .text-body {
+    @apply text-base leading-relaxed text-ink-600;
+  }
+
+  /* Small / meta */
+  .text-meta {
+    @apply text-sm font-medium text-ink-400;
+  }
+
+  /* Section label — the numbered marker */
+  .section-label {
+    @apply inline-flex items-center gap-2 text-2xs font-bold uppercase tracking-widest text-ink-400 mb-8 sm:mb-10;
+  }
+
+  /* ─────────────────────────────────────────────
+     Layout — Mobile-first responsive containers
+  ───────────────────────────────────────────── */
+  .section-container {
+    @apply max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 lg:py-32;
+  }
+
+  .section-container-sm {
+    @apply max-w-3xl mx-auto px-5 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 lg:py-32;
+  }
+
+  /* ─────────────────────────────────────────────
+     Interactive Elements — Touch-friendly sizes
+  ───────────────────────────────────────────── */
+
+  /* Primary CTA — minimal outlined pill */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold
+           text-ink-900 border border-ink-200 rounded-full
+           transition-all duration-200 ease-spring
+           hover:border-ink-400 hover:bg-ink-50
+           active:scale-[0.97];
+    /* Minimum touch target */
+    min-height: 44px;
+  }
+
+  /* Ghost link with animated underline */
+  .link-underline {
+    @apply relative inline-block text-ink-700 font-medium
+           after:absolute after:bottom-0 after:left-0 after:h-px after:w-0
+           after:bg-[var(--accent-red)]
+           after:transition-all after:duration-300 after:ease-spring
+           hover:after:w-full hover:text-ink-900;
+  }
+
+  /* Navigation link */
+  .nav-link {
+    @apply relative text-sm font-medium text-ink-500
+           transition-colors duration-150
+           hover:text-ink-900
+           after:absolute after:bottom-[-2px] after:left-0 after:h-[1.5px] after:w-0
+           after:bg-[var(--accent-red)] after:rounded-full
+           after:transition-all after:duration-300 after:ease-spring
+           hover:after:w-full;
+    /* Minimum touch target for nav items */
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  /* ─────────────────────────────────────────────
+     Cards & Surfaces
+  ───────────────────────────────────────────── */
+  .card-minimal {
+    @apply border-t border-ink-100 py-8 sm:py-10
+           transition-all duration-200 ease-spring;
+  }
+
+  /* Tech pill — borderless, very light */
+  .tech-tag {
+    @apply inline-block text-xs font-mono font-medium
+           px-2.5 py-1 rounded bg-ink-100 text-ink-500
+           tracking-wide;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-ink-100;
+  }
+
+  /* ─────────────────────────────────────────────
+     Scroll reveal states handled via JS
+  ───────────────────────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .perspective-1200 {
+    perspective: 1200px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   Prose overrides (blog)
+───────────────────────────────────────────── */
+.prose {
+  --tw-prose-body: #52524b;
+  --tw-prose-headings: #141412;
+  --tw-prose-lead: #6b6b63;
+  --tw-prose-links: #c8102e;
+  --tw-prose-code: #141412;
+  --tw-prose-pre-bg: #f7f7f6;
+  --tw-prose-hr: #e8e8e4;
+  --tw-prose-quotes: #3d3d38;
+  --tw-prose-quote-borders: #c8102e;
+}
+
+.prose a {
+  text-decoration: none;
+  border-bottom: 1px solid rgba(200, 16, 46, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.prose a:hover {
+  border-color: var(--accent-red);
+}
+
+/* ─────────────────────────────────────────────
+   Mobile-specific performance & UX
+───────────────────────────────────────────── */
+
+/* Faster touch response on mobile */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Disable hover effects on touch devices to prevent sticky states */
+  .nav-link::after {
+    display: none;
+  }
+
+  /* Larger touch targets for links and buttons */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* GPU-accelerated smooth scrolling for all scroll containers */
+@media (min-width: 768px) {
+  .lightbox-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
