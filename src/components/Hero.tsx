@@ -43,7 +43,7 @@ export default function Hero() {
                   transitionDelay: "80ms",
                 }}
               >
-                  <span
+                <span
                   className="inline-block w-1.5 h-1.5 rounded-full mr-2 align-middle"
                   style={{ background: "var(--accent-red)", opacity: 0.75 }}
                   aria-hidden="true"
@@ -81,7 +81,7 @@ export default function Hero() {
                   transitionDelay: "200ms",
                 }}
               >
-                MERN Stack &amp; Python Developer
+                Full-Stack Developer
               </h2>
             </div>
 

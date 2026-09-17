@@ -6,12 +6,13 @@ import { ArrowUpRight, Github, Eye, Maximize2, X } from "lucide-react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import { getAssetPath } from "@/lib/assets";
+import ProjectLightbox from "./ProjectLightbox";
 
 const projects = [
   {
     index: "01",
     title: "Nexcart",
-    role: "Lead Engineer",
+    role: "Full Stack Engineer",
     date: "April 2026",
     previewImage: getAssetPath("/images/nexcart-preview.png"),
     description:
@@ -28,9 +29,9 @@ const projects = [
     date: "2025",
     previewImage: getAssetPath("/images/trackpi-preview.png"),
     description:
-      "Recruitment workflow platform with applicant tracking, collaborative hiring pipelines, and CRM-style candidate management. Designed around how real hiring teams actually work.",
+      "TrackPi Job Portal is a modern full-stack web application collaboratively developed for TrackPi Private Limited. It serves as a comprehensive recruitment workflow platform with applicant tracking and CRM-style candidate management. Designed around how real hiring teams actually work.",
     outcome: "Reduced manual coordination overhead across the hiring pipeline.",
-    tech: ["Angular", "React", "Django REST Framework", "MySQL"],
+    tech: ["MERN", "PostgreSQL", "REST API", "Tailwind CSS"],
     link: null,
     github: "https://github.com/alan-j-w/Trackpi_Job_Portal",
   },
@@ -66,20 +67,14 @@ const ProjectCard = ({ project, i }: { project: any; i: number }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (!isLightboxOpen) return;
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setIsLightboxOpen(false);
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    // Lock body scroll when lightbox is open
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [isLightboxOpen]);
+    const checkMobile = () => setIsMobile(window.matchMedia("(pointer: coarse)").matches);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -162,8 +157,8 @@ const ProjectCard = ({ project, i }: { project: any; i: number }) => {
               {project.previewImage && (
                 <div
                   className="relative inline-block"
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
+                  onMouseEnter={() => !isMobile && setIsHovered(true)}
+                  onMouseLeave={() => !isMobile && setIsHovered(false)}
                 >
                   <button
                     type="button"
@@ -179,7 +174,7 @@ const ProjectCard = ({ project, i }: { project: any; i: number }) => {
 
                   {/* Floating screenshot preview popover — desktop only */}
                   <AnimatePresence>
-                    {isHovered && (
+                    {isHovered && !isMobile && (
                       <motion.div
                         initial={{ opacity: 0, scale: 0.94, y: 10 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -221,75 +216,17 @@ const ProjectCard = ({ project, i }: { project: any; i: number }) => {
         </div>
       </motion.div>
 
-      {/* Lightbox Modal — Fully responsive */}
-      <AnimatePresence>
-        {isLightboxOpen && project.previewImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-8 bg-ink-950/70 backdrop-blur-md"
-            onClick={() => setIsLightboxOpen(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ type: "spring", stiffness: 350, damping: 30 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-w-4xl w-full bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border border-ink-200"
-            >
-              {/* Modal Header */}
-              <div className="bg-ink-100/90 px-3 sm:px-4 py-2.5 sm:py-3 border-b border-ink-200 flex items-center justify-between">
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ff5f56]" />
-                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#ffbd2e]" />
-                  <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-[#27c93f]" />
-                </div>
-                <div className="text-[10px] sm:text-xs font-mono text-ink-600 bg-white px-2 sm:px-3 py-1 rounded-md border border-ink-200/80 flex items-center gap-1.5 sm:gap-2 shadow-2xs max-w-[50%] truncate">
-                  <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500 flex-shrink-0" />
-                  {project.title} · Interface
-                </div>
-                <button
-                  type="button"
-                  onClick={() => setIsLightboxOpen(false)}
-                  className="p-1.5 rounded-lg text-ink-400 hover:text-ink-900 hover:bg-ink-200/60 transition-colors cursor-pointer"
-                  aria-label="Close preview"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-
-              {/* Full Screenshot */}
-              <div className="relative max-h-[65vh] sm:max-h-[70vh] md:max-h-[75vh] overflow-y-auto bg-ink-950 flex items-center justify-center lightbox-scroll">
-                <img
-                  src={project.previewImage}
-                  alt={`${project.title} full interface`}
-                  className="w-full h-auto object-contain block"
-                />
-              </div>
-
-              {/* Footer */}
-              <div className="px-4 sm:px-6 py-3 sm:py-3.5 bg-ink-50 border-t border-ink-100 flex items-center justify-between text-xs">
-                <span className="font-medium text-ink-700 text-[11px] sm:text-xs">
-                  {project.title} · Live Interface Screenshot
-                </span>
-                <span className="font-mono text-ink-400 text-2xs hidden sm:block">
-                  Press ESC or click outside to close
-                </span>
-                <button
-                  type="button"
-                  onClick={() => setIsLightboxOpen(false)}
-                  className="sm:hidden text-[11px] font-medium text-ink-500 active:text-ink-800"
-                >
-                  Close
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Lightbox Modal — Portal based, perfectly centered on mobile & desktop */}
+      {project.previewImage && (
+        <ProjectLightbox
+          isOpen={isLightboxOpen}
+          onClose={() => setIsLightboxOpen(false)}
+          title={project.title}
+          imageSrc={project.previewImage}
+          liveLink={project.link}
+          githubLink={project.github}
+        />
+      )}
     </div>
   );
 };
