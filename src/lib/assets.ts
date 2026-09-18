@@ -1,7 +1,7 @@
-export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/portfolio";
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 /**
- * Returns an asset path prefixed with the basePath (/portfolio).
+ * Returns an asset path prefixed with the basePath (if any).
  * Handles relative or absolute paths, external URLs, and mailto links.
  */
 export function getAssetPath(path: string): string {
@@ -16,7 +16,7 @@ export function getAssetPath(path: string): string {
   }
 
   // Already prefixed with BASE_PATH
-  if (path === BASE_PATH || path.startsWith(`${BASE_PATH}/`)) {
+  if (BASE_PATH && (path === BASE_PATH || path.startsWith(`${BASE_PATH}/`))) {
     return path;
   }
 
