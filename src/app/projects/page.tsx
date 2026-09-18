@@ -11,7 +11,7 @@ const allProjects = [
     {
         index: "01",
         title: "Nexcart",
-        role: "Lead Engineer",
+        role: "Full Stack Engineer",
         date: "April 2026",
         previewImage: getAssetPath("/images/nexcart-preview.png"),
         description:
@@ -41,7 +41,7 @@ const allProjects = [
         date: "October 2025",
         previewImage: getAssetPath("/images/vulnbox-preview.png"),
         description:
-            "Cybersecurity training platform with interactive hacking labs, sandboxed environments, and AI-powered guidance. Simulates real-world vulnerabilities in a safe, structured learning environment.",
+            "Cybersecurity CTF training platform with interactive hacking labs, sandboxed environments, and AI-powered guidance. Simulates real-world vulnerabilities in a safe, structured learning environment.",
         outcome: "Deployed live. Used for practical security training and research.",
         tech: ["Python", "Django", "PostgreSQL", "Google Gemini API", "JavaScript"],
         link: "https://vulnbox.onrender.com",
@@ -59,6 +59,32 @@ const allProjects = [
         tech: ["React Native", "Expo SDK 55", "NativeWind", "Zustand", "React Query"],
         link: null,
         github: "https://github.com/alan-j-w/Cellulogram",
+    },
+    {
+        index: "05",
+        title: "Shopify Taxonomy Classifier",
+        role: "Backend & AI Engineer",
+        date: "August 2026",
+        previewImage: getAssetPath("/images/shopify-taxonomy-preview.png"),
+        description:
+            "Automated e-commerce product classification system that maps inventory directly into 14,606 official Shopify taxonomy categories using Google Gemini AI, Celery, and Redis. Features smart taxonomy caching, SHA-256 idempotency, and a human-in-the-loop review dashboard.",
+        outcome: "Automated manual catalog tagging into an asynchronous background pipeline with DRF endpoints and real-time monitoring.",
+        tech: ["Django", "Celery", "Redis", "Google Gemini AI", "DRF", "Bootstrap 5"],
+        link: null,
+        github: "https://github.com/alan-j-w/Shopify-Taxonomy-Classifier",
+    },
+    {
+        index: "06",
+        title: "Airohunt",
+        role: "Full Stack & AI Engineer",
+        date: "July 2026",
+        previewImage: getAssetPath("/images/airohunt-preview.png"),
+        description:
+            "Intelligent, Ai based Job discovery tool engineered to eliminate ghost listings, scam postings, and duplicates. Features multi-layer fraud detection (RDAP domain age, DNS checks, consultancy blacklists), direct integration with 100+ ATS platforms, semantic career memory scoring",
+        outcome: "Built end-to-end with FastAPI, React 18, SQLite (WAL mode), and multi-provider LLM support (Groq, Gemini, Ollama).",
+        tech: ["FastAPI", "Python", "React", "Zustand", "SQLite", "Tailwind CSS", "LLMs"],
+        link: null,
+        github: "https://github.com/alan-j-w/Airohunt",
     },
 ];
 
