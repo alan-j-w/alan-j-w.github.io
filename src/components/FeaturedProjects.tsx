@@ -86,6 +86,10 @@ const ProjectCard = ({ project, i }: { project: any; i: number }) => {
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.3, 1, 1, 0.3]);
 
+  // Red/blue line 3D scroll animation (mobile)
+  const lineScaleY = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.75, 1], [0.15, 1, 1, 1, 0.15]);
+  const lineOpacity = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [0, 1, 1, 1, 0]);
+
   return (
     <div ref={containerRef} className="py-4 sm:py-8">
       <motion.div
@@ -97,10 +101,22 @@ const ProjectCard = ({ project, i }: { project: any; i: number }) => {
         }}
         className="card-minimal group relative bg-white shadow-sm border border-ink-100/50 hover:shadow-md transition-shadow duration-500 rounded-xl sm:rounded-2xl"
       >
-        {/* Hidden left accent on hover (alternates red/blue) */}
+        {/* Desktop: original hover-only accent line (hidden on mobile) */}
         <div
           className="absolute left-0 top-10 bottom-10 w-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full hidden sm:block"
           style={{ backgroundColor: i % 2 === 0 ? "var(--accent-red)" : "var(--accent-blue)" }}
+          aria-hidden="true"
+        />
+
+        {/* Mobile: scroll-animated accent line (visible only on mobile) */}
+        <motion.div
+          className="absolute left-0 top-10 bottom-10 w-[2px] rounded-full pointer-events-none sm:hidden"
+          style={{
+            backgroundColor: i % 2 === 0 ? "var(--accent-red)" : "var(--accent-blue)",
+            scaleY: lineScaleY,
+            opacity: lineOpacity,
+            transformOrigin: "center",
+          }}
           aria-hidden="true"
         />
 

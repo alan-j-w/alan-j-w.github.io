@@ -101,9 +101,10 @@ export default function Navbar() {
               onClick={() => setMenuOpen(false)}
               className="text-3xl sm:text-4xl font-bold text-ink-900 hover:text-ink-600 transition-colors duration-150"
               style={{
-                transitionDelay: menuOpen ? `${i * 50}ms` : "0ms",
                 transform: menuOpen ? "translateX(0)" : "translateX(-12px)",
-                transition: "transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease",
+                transition: menuOpen
+                  ? `transform 0.3s ${i * 50}ms cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease`
+                  : "transform 0.3s 0ms cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease",
               }}
             >
               {link.name}
